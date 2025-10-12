@@ -12,7 +12,7 @@ def authenticate():
         st.session_state.authenticated = False
     
     if not st.session_state.authenticated:
-        st.title("🔒 Private App - Authentication Required")
+        st.title("🔒 QunaSys - Authentication Required")
         
         col1, col2, col3 = st.columns([1,2,1])
         with col2:
@@ -22,7 +22,7 @@ def authenticate():
                 
                 if submit:
                     # Replace with your actual password
-                    if password == "QunaS-ystheBest":
+                    if password == "QunaSysinSP500!":
                         st.session_state.authenticated = True
                         st.rerun()
                     else:
@@ -35,7 +35,7 @@ def authenticate():
 if authenticate():
     # Set page config - MUST be the first Streamlit command
     st.set_page_config(
-        page_title="HAYAKU: Molecular Property Predictor",
+        page_title="HAYAKU: The Fastest Molecular Property Predictor",
         page_icon="🧪",
         layout="wide",
         initial_sidebar_state="expanded"
