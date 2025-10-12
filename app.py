@@ -8,69 +8,7 @@ import time
 import re
 import os
 import networkx as nx
-import hmac
-import hashlib
 
-def check_authentication():
-    """Only allow specific email addresses to access the app"""
-    
-    # List of authorized emails (only yours)
-    AUTHORIZED_USERS = {
-        "adam@qunasys.com",  # Replace with your actual email
-        "karim@qunasys.com"
-    }
-    
-    # Initialize session state
-    if "authenticated" not in st.session_state:
-        st.session_state.authenticated = False
-    if "user_email" not in st.session_state:
-        st.session_state.user_email = None
-    
-    # If already authenticated, return True
-    if st.session_state.authenticated:
-        return True
-    
-    # Show authentication form
-    st.set_page_config(page_title="Authentication Required", layout="centered")
-    
-    st.title("🔒 Private Application")
-    st.markdown("""
-    This is a private application. Access is restricted to authorized users only.
-    """)
-    
-    with st.form("auth_form"):
-        st.subheader("Sign in with Google")
-        user_email = st.text_input("Email Address", placeholder="your-email@gmail.com")
-        password = st.text_input("Password", type="password", placeholder="Enter access code")
-        submit = st.form_submit_button("Sign In")
-        
-        if submit:
-            # Check if email is authorized
-            if user_email in AUTHORIZED_USERS:
-                # Simple password check (replace with your secure password)
-                if password == "your-secure-password-123":  # Change this!
-                    st.session_state.authenticated = True
-                    st.session_state.user_email = user_email
-                    st.success("✅ Authentication successful!")
-                    st.rerun()
-                else:
-                    st.error("❌ Invalid access code")
-            else:
-                st.error("❌ Unauthorized email address")
-    
-    st.stop()
-    return False
-
-# Check authentication before running any app code
-if not check_authentication():
-    st.stop()
-
-# MAIN APP CODE (Only runs if authenticated)
-st.set_page_config(
-    page_title="HAYAKU: Private Molecular Predictor",
-    page_icon="🧪",
-    layout="wide"
-)
 
 # Your main app with user-specific features
 st.title(f"🧪 HAYAKU - Welcome, {st.session_state.user_email}!")
