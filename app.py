@@ -7,6 +7,7 @@ import base64
 import time
 import re
 import os
+import networkx as nx
 
 # Set page config - MUST be the first Streamlit command
 st.set_page_config(
