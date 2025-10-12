@@ -16,8 +16,8 @@ def check_authentication():
     
     # List of authorized emails (only yours)
     AUTHORIZED_USERS = {
-        "your-email@gmail.com",  # Replace with your actual email
-        "your-backup-email@company.com"
+        "adam@qunasys.com",  # Replace with your actual email
+        "karim@qunasys.com"
     }
     
     # Initialize session state
