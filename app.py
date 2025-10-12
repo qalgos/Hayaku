@@ -4,6 +4,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 import time
 import re
+import networkx as nx
 
 # Set page config - MUST be the first Streamlit command
 st.set_page_config(
@@ -29,12 +30,6 @@ except ImportError:
     SKLEARN_AVAILABLE = False
     st.warning("scikit-learn not available. Using simulated predictions.")
 
-try:
-    from PIL import Image
-    PIL_AVAILABLE = True
-except ImportError:
-    PIL_AVAILABLE = False
-    st.warning("PIL not available. Image handling disabled.")
 
 class MolecularPropertyPredictor:
     def __init__(self):
