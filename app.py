@@ -9,37 +9,7 @@ import re
 import os
 import networkx as nx
 
-# Try to import optional dependencies with graceful fallbacks
-try:
-    import networkx as nx
-    NETWORKX_AVAILABLE = True
-except ImportError:
-    NETWORKX_AVAILABLE = False
-    st.warning("NetworkX not available. Some graph calculations will be simulated.")
 
-try:
-    from sklearn.svm import SVC
-    from sklearn.preprocessing import StandardScaler
-    SKLEARN_AVAILABLE = True
-except ImportError:
-    SKLEARN_AVAILABLE = False
-    st.warning("scikit-learn not available. Using simulated predictions.")
-
-try:
-    from rdkit import Chem
-    from rdkit.Chem import Draw
-    from rdkit.Chem.Draw import MolDraw2DCairo
-    RDKIT_AVAILABLE = True
-except ImportError:
-    RDKIT_AVAILABLE = False
-    st.warning("RDKit not available. Molecule visualization disabled.")
-
-try:
-    from PIL import Image
-    PIL_AVAILABLE = True
-except ImportError:
-    PIL_AVAILABLE = False
-    st.warning("PIL not available. Image handling disabled.")
 
 class MolecularPropertyPredictor:
     def __init__(self):
