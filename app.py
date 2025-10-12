@@ -9,26 +9,6 @@ import re
 import os
 import networkx as nx
 
-
-# Your main app with user-specific features
-st.title(f"🧪 HAYAKU - Welcome, {st.session_state.user_email}!")
-st.success("✅ You have access to the full application")
-
-# Add logout functionality
-with st.sidebar:
-    st.write(f"**Logged in as:** {st.session_state.user_email}")
-    if st.button("🚪 Logout"):
-        for key in list(st.session_state.keys()):
-            del st.session_state[key]
-        st.rerun()
-# Set page config - MUST be the first Streamlit command
-st.set_page_config(
-    page_title="HAYAKU: Molecular Property Predictor",
-    page_icon="🧪",
-    layout="wide",
-    initial_sidebar_state="expanded"
-)
-
 # Try to import optional dependencies with graceful fallbacks
 try:
     import networkx as nx
