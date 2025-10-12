@@ -30,15 +30,6 @@ except ImportError:
     st.warning("scikit-learn not available. Using simulated predictions.")
 
 try:
-    from rdkit import Chem
-    from rdkit.Chem import Draw
-    from rdkit.Chem.Draw import MolDraw2DCairo
-    RDKIT_AVAILABLE = True
-except ImportError:
-    RDKIT_AVAILABLE = False
-    st.warning("RDKit not available. Molecule visualization disabled.")
-
-try:
     from PIL import Image
     PIL_AVAILABLE = True
 except ImportError:
