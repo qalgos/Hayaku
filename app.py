@@ -292,7 +292,9 @@ if authenticate():
             3. **View Results**: See predictions and download results
             
             ### Technology
-            Built with Python, Streamlit, and cheminformatics libraries.
+            Based on state-of-the-art quantum machine learning research conducted internally at QunaSys, Hayaku consititues the most efficient 
+            molecular property predictor on the market. It can be levraged in pharmaceutical research to speed up the costly screening process by more than x68, and thereby 
+            provide a competitive advantage to all users.
             """)
     
         def is_valid_smiles(self, smiles):
