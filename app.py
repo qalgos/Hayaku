@@ -7,6 +7,7 @@ import base64
 import time
 import re
 import os
+import networkx as nx
 
 # Try to import RDKit with error handling
 try:
