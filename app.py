@@ -366,7 +366,7 @@ if authenticate():
             
             atomic_weights = {'C': 12, 'O': 16, 'N': 14, 'H': 1}
             mol_weight = sum(atom_counts[atom] * atomic_weights[atom] for atom in atom_counts)
-            properties["Estimated MW"] = f"{mol_weight:.1f} g/mol"
+            properties["Estimated MW"] = f"{mol_weight:.1f}g/mol"
             
             return properties
     
