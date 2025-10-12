@@ -7,7 +7,32 @@ import base64
 import time
 import re
 import os
+def authenticate():
+    if 'authenticated' not in st.session_state:
+        st.session_state.authenticated = False
+    
+    if not st.session_state.authenticated:
+        st.title("🔒 Private App - Authentication Required")
+        
+        col1, col2, col3 = st.columns([1,2,1])
+        with col2:
+            with st.form("auth_form"):
+                password = st.text_input("Enter access password:", type="password")
+                submit = st.form_submit_button("Login")
+                
+                if submit:
+                    # Replace with your actual password
+                    if password == "QunaS-ystheBest":
+                        st.session_state.authenticated = True
+                        st.rerun()
+                    else:
+                        st.error("Incorrect password")
+            st.stop()
+    
+    return True
 
+# Check authentication before running app
+if authenticate():
 # Set page config - MUST be the first Streamlit command
 st.set_page_config(
     page_title="HAYAKU: Molecular Property Predictor",
