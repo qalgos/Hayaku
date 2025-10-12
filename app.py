@@ -4,7 +4,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 import time
 import re
-import networkx as nx
+
 # Set page config - MUST be the first Streamlit command
 st.set_page_config(
     page_title="HAYAKU: Molecular Property Predictor",
