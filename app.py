@@ -660,94 +660,94 @@ def show_quantum_circuit(self, duration=0.5):
                     unsafe_allow_html=True
                 )
     
-        def process_batch(self, uploaded_file, batch_text, properties):
-    """Process batch of SMILES strings with loading animation"""
-    try:
-        # Extract SMILES from input
-        smiles_list = []
-        
-        if uploaded_file:
-            content = uploaded_file.read().decode('utf-8')
-            lines = content.split('\n')
-        else:
-            lines = batch_text.split('\n')
-        
-        for line in lines:
-            line = line.strip()
-            if line and not line.startswith('#') and self.is_valid_smiles(line):
-                smiles_list.append(line)
-        
-        if not smiles_list:
-            st.error("No valid SMILES strings found")
-            return
-        
-        # Show batch processing animation
-        with st.spinner("🔄 Initializing quantum batch processor..."):
-            time.sleep(0.3)
-        
-        # Process each molecule
-        results = []
-        progress_bar = st.progress(0)
-        status_text = st.empty()
-        
-        for i, smiles in enumerate(smiles_list):
-            # Show mini quantum animation for each molecule
-            if i < 3:  # Only show for first few to avoid too much animation
-                with st.empty():
-                    st.markdown(f"""
-                    <div style='
-                        background: #1a1a2e;
-                        padding: 10px;
-                        border-radius: 5px;
-                        border-left: 3px solid #00b4db;
-                        margin: 5px 0;
-                    '>
-                        <span style='color: #00b4db;'>⚛️</span>
-                        <span style='color: white; font-size: 12px;'>
-                        Processing molecule {i+1}: Quantum state analysis...
-                        </span>
-                    </div>
-                    """, unsafe_allow_html=True)
-                    time.sleep(0.1)
+    def process_batch(self, uploaded_file, batch_text, properties):
+        """Process batch of SMILES strings with loading animation"""
+        try:
+            # Extract SMILES from input
+            smiles_list = []
             
-            status_text.text(f"🔬 Quantum processing {i+1}/{len(smiles_list)}")
-            progress_bar.progress((i + 1) / len(smiles_list))
-            
-            # Calculate properties
-            basic_props = self.calculate_basic_properties(smiles)
-            
-            if NETWORKX_AVAILABLE:
-                indices = self.calculate_topological_indices(smiles)
+            if uploaded_file:
+                content = uploaded_file.read().decode('utf-8')
+                lines = content.split('\n')
             else:
-                indices = self.simulate_topological_indices(smiles)
+                lines = batch_text.split('\n')
             
-            # Generate predictions
-            pred_results = {}
-            for prop in properties:
-                accuracy = self.datasets[prop]["accuracy"]
-                prediction, confidence = self.generate_prediction(smiles, prop, accuracy)
-                pred_results[prop] = {
-                    "prediction": prediction,
-                    "confidence": confidence
-                }
+            for line in lines:
+                line = line.strip()
+                if line and not line.startswith('#') and self.is_valid_smiles(line):
+                    smiles_list.append(line)
             
-            results.append({
-                "smiles": smiles,
-                "basic_properties": basic_props,
-                "indices": indices,
-                "predictions": pred_results
-            })
-        
-        # Store results
-        st.session_state.batch_data = results
-        st.session_state.processed_batch = True
-        
-        progress_bar.empty()
-        status_text.empty()
-        st.success(f"✅ Quantum computation complete! Processed {len(results)} molecules")
-        
-    except Exception as e:
-        st.error(f"Quantum computation error: {str(e)}")
+            if not smiles_list:
+                st.error("No valid SMILES strings found")
+                return
+            
+            # Show batch processing animation
+            with st.spinner("🔄 Initializing quantum batch processor..."):
+                time.sleep(0.3)
+            
+            # Process each molecule
+            results = []
+            progress_bar = st.progress(0)
+            status_text = st.empty()
+            
+            for i, smiles in enumerate(smiles_list):
+                # Show mini quantum animation for each molecule
+                if i < 3:  # Only show for first few to avoid too much animation
+                    with st.empty():
+                        st.markdown(f"""
+                        <div style='
+                            background: #1a1a2e;
+                            padding: 10px;
+                            border-radius: 5px;
+                            border-left: 3px solid #00b4db;
+                            margin: 5px 0;
+                        '>
+                            <span style='color: #00b4db;'>⚛️</span>
+                            <span style='color: white; font-size: 12px;'>
+                            Processing molecule {i+1}: Quantum state analysis...
+                            </span>
+                        </div>
+                        """, unsafe_allow_html=True)
+                        time.sleep(0.1)
+                
+                status_text.text(f"🔬 Quantum processing {i+1}/{len(smiles_list)}")
+                progress_bar.progress((i + 1) / len(smiles_list))
+                
+                # Calculate properties
+                basic_props = self.calculate_basic_properties(smiles)
+                
+                if NETWORKX_AVAILABLE:
+                    indices = self.calculate_topological_indices(smiles)
+                else:
+                    indices = self.simulate_topological_indices(smiles)
+                
+                # Generate predictions
+                pred_results = {}
+                for prop in properties:
+                    accuracy = self.datasets[prop]["accuracy"]
+                    prediction, confidence = self.generate_prediction(smiles, prop, accuracy)
+                    pred_results[prop] = {
+                        "prediction": prediction,
+                        "confidence": confidence
+                    }
+                
+                results.append({
+                    "smiles": smiles,
+                    "basic_properties": basic_props,
+                    "indices": indices,
+                    "predictions": pred_results
+                })
+            
+            # Store results
+            st.session_state.batch_data = results
+            st.session_state.processed_batch = True
+            
+            progress_bar.empty()
+            status_text.empty()
+            st.success(f"✅ Quantum computation complete! Processed {len(results)} molecules")
+            
+        except Exception as e:
+            st.error(f"Quantum computation error: {str(e)}")
     
         def display_batch_results(self):
             """Display batch processing results"""
