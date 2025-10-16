@@ -212,205 +212,205 @@ if authenticate():
                 if st.session_state.current_molecule:
                     self.display_single_results()
 
-    def show_quantum_loading(self, duration=5.5):
+        def show_quantum_loading(self, duration=5.5):
 
-    
-        # Create a container for the animation
-        with st.empty():
-            # Quantum computation themed loading steps
-            quantum_steps = [
-                "🔬 Initializing molecular orbitals...",
-                "⚛️ Quantizing electron states...",
-                "🌀 Calculating wavefunctions...",
-                "⚡ Solving Schrödinger equation...",
-                "📊 Collapsing probability amplitudes...",
-                "🎯 Computing topological indices...",
-                "🧠 Running ML predictions..."
-            ]
-            
-            # Calculate time per step
-            steps = len(quantum_steps)
-            step_duration = duration / steps
-            
-            # Create a progress bar with quantum theme
-            progress_bar = st.progress(0)
-            
-            # Display each step with progress
-            for i, step in enumerate(quantum_steps):
-                # Update progress
-                progress = (i + 1) / steps
-                progress_bar.progress(progress)
+        
+            # Create a container for the animation
+            with st.empty():
+                # Quantum computation themed loading steps
+                quantum_steps = [
+                    "🔬 Initializing molecular orbitals...",
+                    "⚛️ Quantizing electron states...",
+                    "🌀 Calculating wavefunctions...",
+                    "⚡ Solving Schrödinger equation...",
+                    "📊 Collapsing probability amplitudes...",
+                    "🎯 Computing topological indices...",
+                    "🧠 Running ML predictions..."
+                ]
                 
-                # Display current quantum computation step
-                st.markdown(f"""
-                <div style='
-                    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-                    padding: 20px;
-                    border-radius: 10px;
-                    color: white;
-                    text-align: center;
-                    margin: 10px 0;
-                    border: 2px solid #4CA1AF;
-                '>
-                    <div style='font-size: 24px; margin-bottom: 10px;'>⚛️</div>
-                    <div style='font-weight: bold; font-size: 16px;'>{step}</div>
-                    <div style='font-size: 12px; opacity: 0.8; margin-top: 5px;'>
-                        Quantum State: {i+1}/{steps}
+                # Calculate time per step
+                steps = len(quantum_steps)
+                step_duration = duration / steps
+                
+                # Create a progress bar with quantum theme
+                progress_bar = st.progress(0)
+                
+                # Display each step with progress
+                for i, step in enumerate(quantum_steps):
+                    # Update progress
+                    progress = (i + 1) / steps
+                    progress_bar.progress(progress)
+                    
+                    # Display current quantum computation step
+                    st.markdown(f"""
+                    <div style='
+                        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+                        padding: 20px;
+                        border-radius: 10px;
+                        color: white;
+                        text-align: center;
+                        margin: 10px 0;
+                        border: 2px solid #4CA1AF;
+                    '>
+                        <div style='font-size: 24px; margin-bottom: 10px;'>⚛️</div>
+                        <div style='font-weight: bold; font-size: 16px;'>{step}</div>
+                        <div style='font-size: 12px; opacity: 0.8; margin-top: 5px;'>
+                            Quantum State: {i+1}/{steps}
+                        </div>
                     </div>
-                </div>
+                    """, unsafe_allow_html=True)
+                    
+                    # Wait before next step
+                    time.sleep(step_duration)
+                
+                # Clear the animation
+                progress_bar.empty()
+
+        def show_quantum_particles(self, duration=0.5):
+            """Alternative: Quantum particle animation"""
+            with st.empty():
+                # Quantum particle states
+                particles = ["⚡", "🌀", "✨", "⚛️", "🔮", "🌌"]
+                frames = 12
+                
+                progress_text = st.empty()
+                animation_container = st.empty()
+                
+                for i in range(frames):
+                    progress = (i + 1) / frames
+                    particle = particles[i % len(particles)]
+                    
+                    # Create orbiting particle effect
+                    progress_text.markdown(f"**Quantum Computation Progress: {int(progress * 100)}%**")
+                    
+                    animation_container.markdown(f"""
+                    <div style='
+                        text-align: center;
+                        padding: 30px;
+                        background: linear-gradient(45deg, #0f0c29, #302b63, #24243e);
+                        border-radius: 15px;
+                        border: 1px solid #4CA1AF;
+                    '>
+                        <div style='font-size: 48px; animation: pulse 0.5s infinite;'>
+                            {particle}
+                        </div>
+                        <div style='color: white; font-size: 14px; margin-top: 10px;'>
+                            Computing molecular eigenstates...
+                        </div>
+                        <div style='
+                            width: 100%;
+                            height: 4px;
+                            background: rgba(255,255,255,0.2);
+                            border-radius: 2px;
+                            margin-top: 15px;
+                            overflow: hidden;
+                        '>
+                            <div style='
+                                width: {progress * 100}%;
+                                height: 100%;
+                                background: linear-gradient(90deg, #00b4db, #0083b0);
+                                border-radius: 2px;
+                                transition: width 0.3s;
+                            '></div>
+                        </div>
+                    </div>
+                    """, unsafe_allow_html=True)
+                    
+                    time.sleep(duration / frames)
+
+        def show_quantum_circuit(self, duration=0.5):
+            """Quantum circuit loading animation"""
+            with st.empty():
+                # Quantum gate operations
+                gates = ["H", "X", "Y", "Z", "CNOT", "SWAP", "RX", "RY"]
+                qubits = 3
+                
+                st.markdown("""
+                <style>
+                @keyframes quantumGlow {
+                    0% { opacity: 0.3; }
+                    50% { opacity: 1; }
+                    100% { opacity: 0.3; }
+                }
+                .quantum-gate {
+                    animation: quantumGlow 0.8s infinite;
+                    display: inline-block;
+                    margin: 2px;
+                    padding: 5px 10px;
+                    background: #1a1a2e;
+                    color: #00b4db;
+                    border-radius: 5px;
+                    border: 1px solid #00b4db;
+                    font-family: monospace;
+                }
+                </style>
                 """, unsafe_allow_html=True)
                 
-                # Wait before next step
-                time.sleep(step_duration)
-            
-            # Clear the animation
-            progress_bar.empty()
-
-def show_quantum_particles(self, duration=0.5):
-    """Alternative: Quantum particle animation"""
-    with st.empty():
-        # Quantum particle states
-        particles = ["⚡", "🌀", "✨", "⚛️", "🔮", "🌌"]
-        frames = 12
-        
-        progress_text = st.empty()
-        animation_container = st.empty()
-        
-        for i in range(frames):
-            progress = (i + 1) / frames
-            particle = particles[i % len(particles)]
-            
-            # Create orbiting particle effect
-            progress_text.markdown(f"**Quantum Computation Progress: {int(progress * 100)}%**")
-            
-            animation_container.markdown(f"""
-            <div style='
-                text-align: center;
-                padding: 30px;
-                background: linear-gradient(45deg, #0f0c29, #302b63, #24243e);
-                border-radius: 15px;
-                border: 1px solid #4CA1AF;
-            '>
-                <div style='font-size: 48px; animation: pulse 0.5s infinite;'>
-                    {particle}
-                </div>
-                <div style='color: white; font-size: 14px; margin-top: 10px;'>
-                    Computing molecular eigenstates...
-                </div>
-                <div style='
-                    width: 100%;
-                    height: 4px;
-                    background: rgba(255,255,255,0.2);
-                    border-radius: 2px;
-                    margin-top: 15px;
-                    overflow: hidden;
-                '>
-                    <div style='
-                        width: {progress * 100}%;
-                        height: 100%;
-                        background: linear-gradient(90deg, #00b4db, #0083b0);
-                        border-radius: 2px;
-                        transition: width 0.3s;
-                    '></div>
-                </div>
-            </div>
-            """, unsafe_allow_html=True)
-            
-            time.sleep(duration / frames)
-
-def show_quantum_circuit(self, duration=0.5):
-    """Quantum circuit loading animation"""
-    with st.empty():
-        # Quantum gate operations
-        gates = ["H", "X", "Y", "Z", "CNOT", "SWAP", "RX", "RY"]
-        qubits = 3
-        
-        st.markdown("""
-        <style>
-        @keyframes quantumGlow {
-            0% { opacity: 0.3; }
-            50% { opacity: 1; }
-            100% { opacity: 0.3; }
-        }
-        .quantum-gate {
-            animation: quantumGlow 0.8s infinite;
-            display: inline-block;
-            margin: 2px;
-            padding: 5px 10px;
-            background: #1a1a2e;
-            color: #00b4db;
-            border-radius: 5px;
-            border: 1px solid #00b4db;
-            font-family: monospace;
-        }
-        </style>
-        """, unsafe_allow_html=True)
-        
-        frames = 8
-        for frame in range(frames):
-            # Generate random quantum circuit
-            circuit_html = "<div style='text-align: center; padding: 20px; background: #0c0c1d; border-radius: 10px; border: 1px solid #4CA1AF;'>"
-            circuit_html += "<div style='color: white; margin-bottom: 15px; font-weight: bold;'>Quantum Circuit Simulation</div>"
-            
-            for qubit in range(qubits):
-                circuit_html += f"<div style='margin: 5px 0;'>Q{qubit}: ─"
-                for _ in range(4):
-                    gate = gates[(frame + qubit + _) % len(gates)]
-                    circuit_html += f"<span class='quantum-gate'>{gate}</span>─"
-                circuit_html += "┤</div>"
-            
-            circuit_html += f"<div style='color: #888; font-size: 12px; margin-top: 10px;'>Frame {frame + 1}/{frames} - Applying quantum gates...</div>"
-            circuit_html += "</div>"
-            
-            st.markdown(circuit_html, unsafe_allow_html=True)
-            time.sleep(duration / frames)
+                frames = 8
+                for frame in range(frames):
+                    # Generate random quantum circuit
+                    circuit_html = "<div style='text-align: center; padding: 20px; background: #0c0c1d; border-radius: 10px; border: 1px solid #4CA1AF;'>"
+                    circuit_html += "<div style='color: white; margin-bottom: 15px; font-weight: bold;'>Quantum Circuit Simulation</div>"
+                    
+                    for qubit in range(qubits):
+                        circuit_html += f"<div style='margin: 5px 0;'>Q{qubit}: ─"
+                        for _ in range(4):
+                            gate = gates[(frame + qubit + _) % len(gates)]
+                            circuit_html += f"<span class='quantum-gate'>{gate}</span>─"
+                        circuit_html += "┤</div>"
+                    
+                    circuit_html += f"<div style='color: #888; font-size: 12px; margin-top: 10px;'>Frame {frame + 1}/{frames} - Applying quantum gates...</div>"
+                    circuit_html += "</div>"
+                    
+                    st.markdown(circuit_html, unsafe_allow_html=True)
+                    time.sleep(duration / frames)
 
         
-        def batch_processing_interface(self):
-            """Interface for batch processing"""
-            st.subheader("Batch SMILES Processing")
-            
-            # File upload
-            uploaded_file = st.file_uploader(
-                "Upload a text file with SMILES strings",
-                type=['txt'],
-                help="Upload a text file with one SMILES string per line"
-            )
-            
-            # Text area for direct input
-            batch_text = st.text_area(
-                "Or paste SMILES strings (one per line):",
-                height=150,
-                placeholder="CCO\nCC(=O)O\nc1ccccc1",
-                help="Enter one SMILES string per line"
-            )
-            
-            # Property selection for batch
-            st.subheader("Properties to Predict")
-            batch_properties = []
-            for prop in self.datasets:
-                if st.checkbox(prop, value=True, key=f"batch_{prop}"):
-                    batch_properties.append(prop)
-            
-            # Process buttons
-            col1, col2 = st.columns([1, 1])
-            
-            with col1:
-                if st.button("Process Batch", type="primary", use_container_width=True):
-                    if uploaded_file or batch_text:
-                        with st.spinner("Processing batch..."):
-                            self.process_batch(uploaded_file, batch_text, batch_properties)
-                    else:
-                        st.error("Please provide SMILES data")
-            
-            with col2:
-                if st.session_state.processed_batch and st.session_state.batch_data:
-                    if st.button("Export Results", use_container_width=True):
-                        self.export_results()
-            
-            # Display results
-            if st.session_state.processed_batch:
-                self.display_batch_results()
+            def batch_processing_interface(self):
+                """Interface for batch processing"""
+                st.subheader("Batch SMILES Processing")
+                
+                # File upload
+                uploaded_file = st.file_uploader(
+                    "Upload a text file with SMILES strings",
+                    type=['txt'],
+                    help="Upload a text file with one SMILES string per line"
+                )
+                
+                # Text area for direct input
+                batch_text = st.text_area(
+                    "Or paste SMILES strings (one per line):",
+                    height=150,
+                    placeholder="CCO\nCC(=O)O\nc1ccccc1",
+                    help="Enter one SMILES string per line"
+                )
+                
+                # Property selection for batch
+                st.subheader("Properties to Predict")
+                batch_properties = []
+                for prop in self.datasets:
+                    if st.checkbox(prop, value=True, key=f"batch_{prop}"):
+                        batch_properties.append(prop)
+                
+                # Process buttons
+                col1, col2 = st.columns([1, 1])
+                
+                with col1:
+                    if st.button("Process Batch", type="primary", use_container_width=True):
+                        if uploaded_file or batch_text:
+                            with st.spinner("Processing batch..."):
+                                self.process_batch(uploaded_file, batch_text, batch_properties)
+                        else:
+                            st.error("Please provide SMILES data")
+                
+                with col2:
+                    if st.session_state.processed_batch and st.session_state.batch_data:
+                        if st.button("Export Results", use_container_width=True):
+                            self.export_results()
+                
+                # Display results
+                if st.session_state.processed_batch:
+                    self.display_batch_results()
     
         def about_interface(self):
             """About page"""
@@ -467,42 +467,42 @@ def show_quantum_circuit(self, duration=0.5):
             return True
     
     
-    def analyze_single_molecule(self, smiles, name, properties):
+        def analyze_single_molecule(self, smiles, name, properties):
    
-        try:
-            # Show quantum loading animation
-            self.show_quantum_loading(duration=0.5)  # Adjust duration here
-            
-            # Calculate basic properties
-            mol_properties = self.calculate_basic_properties(smiles)
-            
-            # Calculate topological indices
-            if NETWORKX_AVAILABLE:
-                topological_indices = self.calculate_topological_indices(smiles)
-            else:
-                topological_indices = self.simulate_topological_indices(smiles)
-            
-            # Generate predictions
-            predictions = {}
-            for prop in properties:
-                accuracy = self.datasets[prop]["accuracy"]
-                prediction, confidence = self.generate_prediction(smiles, prop, accuracy)
-                predictions[prop] = {
-                    "prediction": prediction,
-                    "confidence": confidence
+            try:
+                # Show quantum loading animation
+                self.show_quantum_loading(duration=0.5)  # Adjust duration here
+                
+                # Calculate basic properties
+                mol_properties = self.calculate_basic_properties(smiles)
+                
+                # Calculate topological indices
+                if NETWORKX_AVAILABLE:
+                    topological_indices = self.calculate_topological_indices(smiles)
+                else:
+                    topological_indices = self.simulate_topological_indices(smiles)
+                
+                # Generate predictions
+                predictions = {}
+                for prop in properties:
+                    accuracy = self.datasets[prop]["accuracy"]
+                    prediction, confidence = self.generate_prediction(smiles, prop, accuracy)
+                    predictions[prop] = {
+                        "prediction": prediction,
+                        "confidence": confidence
+                    }
+                
+                # Store results
+                st.session_state.current_molecule = {
+                    'name': name,
+                    'smiles': smiles,
+                    'basic_properties': mol_properties,
+                    'topological_indices': topological_indices,
+                    'predictions': predictions
                 }
-            
-            # Store results
-            st.session_state.current_molecule = {
-                'name': name,
-                'smiles': smiles,
-                'basic_properties': mol_properties,
-                'topological_indices': topological_indices,
-                'predictions': predictions
-            }
-            
-        except Exception as e:
-            st.error(f"Error analyzing molecule: {str(e)}")
+                
+            except Exception as e:
+                st.error(f"Error analyzing molecule: {str(e)}")
     
         def calculate_basic_properties(self, smiles):
             """Calculate basic molecular properties"""
@@ -660,94 +660,94 @@ def show_quantum_circuit(self, duration=0.5):
                     unsafe_allow_html=True
                 )
     
-    def process_batch(self, uploaded_file, batch_text, properties):
-        """Process batch of SMILES strings with loading animation"""
-        try:
-            # Extract SMILES from input
-            smiles_list = []
-            
-            if uploaded_file:
-                content = uploaded_file.read().decode('utf-8')
-                lines = content.split('\n')
-            else:
-                lines = batch_text.split('\n')
-            
-            for line in lines:
-                line = line.strip()
-                if line and not line.startswith('#') and self.is_valid_smiles(line):
-                    smiles_list.append(line)
-            
-            if not smiles_list:
-                st.error("No valid SMILES strings found")
-                return
-            
-            # Show batch processing animation
-            with st.spinner("🔄 Initializing quantum batch processor..."):
-                time.sleep(0.3)
-            
-            # Process each molecule
-            results = []
-            progress_bar = st.progress(0)
-            status_text = st.empty()
-            
-            for i, smiles in enumerate(smiles_list):
-                # Show mini quantum animation for each molecule
-                if i < 3:  # Only show for first few to avoid too much animation
-                    with st.empty():
-                        st.markdown(f"""
-                        <div style='
-                            background: #1a1a2e;
-                            padding: 10px;
-                            border-radius: 5px;
-                            border-left: 3px solid #00b4db;
-                            margin: 5px 0;
-                        '>
-                            <span style='color: #00b4db;'>⚛️</span>
-                            <span style='color: white; font-size: 12px;'>
-                            Processing molecule {i+1}: Quantum state analysis...
-                            </span>
-                        </div>
-                        """, unsafe_allow_html=True)
-                        time.sleep(0.1)
+        def process_batch(self, uploaded_file, batch_text, properties):
+            """Process batch of SMILES strings with loading animation"""
+            try:
+                # Extract SMILES from input
+                smiles_list = []
                 
-                status_text.text(f"🔬 Quantum processing {i+1}/{len(smiles_list)}")
-                progress_bar.progress((i + 1) / len(smiles_list))
-                
-                # Calculate properties
-                basic_props = self.calculate_basic_properties(smiles)
-                
-                if NETWORKX_AVAILABLE:
-                    indices = self.calculate_topological_indices(smiles)
+                if uploaded_file:
+                    content = uploaded_file.read().decode('utf-8')
+                    lines = content.split('\n')
                 else:
-                    indices = self.simulate_topological_indices(smiles)
+                    lines = batch_text.split('\n')
                 
-                # Generate predictions
-                pred_results = {}
-                for prop in properties:
-                    accuracy = self.datasets[prop]["accuracy"]
-                    prediction, confidence = self.generate_prediction(smiles, prop, accuracy)
-                    pred_results[prop] = {
-                        "prediction": prediction,
-                        "confidence": confidence
-                    }
+                for line in lines:
+                    line = line.strip()
+                    if line and not line.startswith('#') and self.is_valid_smiles(line):
+                        smiles_list.append(line)
                 
-                results.append({
-                    "smiles": smiles,
-                    "basic_properties": basic_props,
-                    "indices": indices,
-                    "predictions": pred_results
-                })
-            
-            # Store results
-            st.session_state.batch_data = results
-            st.session_state.processed_batch = True
-            
-            progress_bar.empty()
-            status_text.empty()
-            st.success(f"✅ Quantum computation complete! Processed {len(results)} molecules")
-            
-        except Exception as e:
-            st.error(f"Quantum computation error: {str(e)}")
+                if not smiles_list:
+                    st.error("No valid SMILES strings found")
+                    return
+                
+                # Show batch processing animation
+                with st.spinner("🔄 Initializing quantum batch processor..."):
+                    time.sleep(0.3)
+                
+                # Process each molecule
+                results = []
+                progress_bar = st.progress(0)
+                status_text = st.empty()
+                
+                for i, smiles in enumerate(smiles_list):
+                    # Show mini quantum animation for each molecule
+                    if i < 3:  # Only show for first few to avoid too much animation
+                        with st.empty():
+                            st.markdown(f"""
+                            <div style='
+                                background: #1a1a2e;
+                                padding: 10px;
+                                border-radius: 5px;
+                                border-left: 3px solid #00b4db;
+                                margin: 5px 0;
+                            '>
+                                <span style='color: #00b4db;'>⚛️</span>
+                                <span style='color: white; font-size: 12px;'>
+                                Processing molecule {i+1}: Quantum state analysis...
+                                </span>
+                            </div>
+                            """, unsafe_allow_html=True)
+                            time.sleep(0.1)
+                    
+                    status_text.text(f"🔬 Quantum processing {i+1}/{len(smiles_list)}")
+                    progress_bar.progress((i + 1) / len(smiles_list))
+                    
+                    # Calculate properties
+                    basic_props = self.calculate_basic_properties(smiles)
+                    
+                    if NETWORKX_AVAILABLE:
+                        indices = self.calculate_topological_indices(smiles)
+                    else:
+                        indices = self.simulate_topological_indices(smiles)
+                    
+                    # Generate predictions
+                    pred_results = {}
+                    for prop in properties:
+                        accuracy = self.datasets[prop]["accuracy"]
+                        prediction, confidence = self.generate_prediction(smiles, prop, accuracy)
+                        pred_results[prop] = {
+                            "prediction": prediction,
+                            "confidence": confidence
+                        }
+                    
+                    results.append({
+                        "smiles": smiles,
+                        "basic_properties": basic_props,
+                        "indices": indices,
+                        "predictions": pred_results
+                    })
+                
+                # Store results
+                st.session_state.batch_data = results
+                st.session_state.processed_batch = True
+                
+                progress_bar.empty()
+                status_text.empty()
+                st.success(f"✅ Quantum computation complete! Processed {len(results)} molecules")
+                
+            except Exception as e:
+                st.error(f"Quantum computation error: {str(e)}")
     
         def display_batch_results(self):
             """Display batch processing results"""
