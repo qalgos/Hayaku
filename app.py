@@ -212,7 +212,7 @@ if authenticate():
                 if st.session_state.current_molecule:
                     self.display_single_results()
 
-        def show_quantum_loading(self, duration=0.5):
+        def show_quantum_loading(self, duration=5.5):
     """Show a quantum computation loading animation"""
     
     # Create a container for the animation
