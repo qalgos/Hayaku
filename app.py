@@ -466,42 +466,43 @@ def show_quantum_circuit(self, duration=0.5):
                 
             return True
     
-        def analyze_single_molecule(self, smiles, name, properties):
-    """Analyze a single molecule with quantum loading animation"""
-    try:
-        # Show quantum loading animation
-        self.show_quantum_loading(duration=0.5)  # Adjust duration here
-        
-        # Calculate basic properties
-        mol_properties = self.calculate_basic_properties(smiles)
-        
-        # Calculate topological indices
-        if NETWORKX_AVAILABLE:
-            topological_indices = self.calculate_topological_indices(smiles)
-        else:
-            topological_indices = self.simulate_topological_indices(smiles)
-        
-        # Generate predictions
-        predictions = {}
-        for prop in properties:
-            accuracy = self.datasets[prop]["accuracy"]
-            prediction, confidence = self.generate_prediction(smiles, prop, accuracy)
-            predictions[prop] = {
-                "prediction": prediction,
-                "confidence": confidence
+    
+    def analyze_single_molecule(self, smiles, name, properties):
+   
+        try:
+            # Show quantum loading animation
+            self.show_quantum_loading(duration=0.5)  # Adjust duration here
+            
+            # Calculate basic properties
+            mol_properties = self.calculate_basic_properties(smiles)
+            
+            # Calculate topological indices
+            if NETWORKX_AVAILABLE:
+                topological_indices = self.calculate_topological_indices(smiles)
+            else:
+                topological_indices = self.simulate_topological_indices(smiles)
+            
+            # Generate predictions
+            predictions = {}
+            for prop in properties:
+                accuracy = self.datasets[prop]["accuracy"]
+                prediction, confidence = self.generate_prediction(smiles, prop, accuracy)
+                predictions[prop] = {
+                    "prediction": prediction,
+                    "confidence": confidence
+                }
+            
+            # Store results
+            st.session_state.current_molecule = {
+                'name': name,
+                'smiles': smiles,
+                'basic_properties': mol_properties,
+                'topological_indices': topological_indices,
+                'predictions': predictions
             }
-        
-        # Store results
-        st.session_state.current_molecule = {
-            'name': name,
-            'smiles': smiles,
-            'basic_properties': mol_properties,
-            'topological_indices': topological_indices,
-            'predictions': predictions
-        }
-        
-    except Exception as e:
-        st.error(f"Error analyzing molecule: {str(e)}")
+            
+        except Exception as e:
+            st.error(f"Error analyzing molecule: {str(e)}")
     
         def calculate_basic_properties(self, smiles):
             """Calculate basic molecular properties"""
