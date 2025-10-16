@@ -212,59 +212,59 @@ if authenticate():
                 if st.session_state.current_molecule:
                     self.display_single_results()
 
-        def show_quantum_loading(self, duration=5.5):
-    """Show a quantum computation loading animation"""
+    def show_quantum_loading(self, duration=5.5):
+
     
-    # Create a container for the animation
-    with st.empty():
-        # Quantum computation themed loading steps
-        quantum_steps = [
-            "🔬 Initializing molecular orbitals...",
-            "⚛️ Quantizing electron states...",
-            "🌀 Calculating wavefunctions...",
-            "⚡ Solving Schrödinger equation...",
-            "📊 Collapsing probability amplitudes...",
-            "🎯 Computing topological indices...",
-            "🧠 Running ML predictions..."
-        ]
-        
-        # Calculate time per step
-        steps = len(quantum_steps)
-        step_duration = duration / steps
-        
-        # Create a progress bar with quantum theme
-        progress_bar = st.progress(0)
-        
-        # Display each step with progress
-        for i, step in enumerate(quantum_steps):
-            # Update progress
-            progress = (i + 1) / steps
-            progress_bar.progress(progress)
+        # Create a container for the animation
+        with st.empty():
+            # Quantum computation themed loading steps
+            quantum_steps = [
+                "🔬 Initializing molecular orbitals...",
+                "⚛️ Quantizing electron states...",
+                "🌀 Calculating wavefunctions...",
+                "⚡ Solving Schrödinger equation...",
+                "📊 Collapsing probability amplitudes...",
+                "🎯 Computing topological indices...",
+                "🧠 Running ML predictions..."
+            ]
             
-            # Display current quantum computation step
-            st.markdown(f"""
-            <div style='
-                background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-                padding: 20px;
-                border-radius: 10px;
-                color: white;
-                text-align: center;
-                margin: 10px 0;
-                border: 2px solid #4CA1AF;
-            '>
-                <div style='font-size: 24px; margin-bottom: 10px;'>⚛️</div>
-                <div style='font-weight: bold; font-size: 16px;'>{step}</div>
-                <div style='font-size: 12px; opacity: 0.8; margin-top: 5px;'>
-                    Quantum State: {i+1}/{steps}
+            # Calculate time per step
+            steps = len(quantum_steps)
+            step_duration = duration / steps
+            
+            # Create a progress bar with quantum theme
+            progress_bar = st.progress(0)
+            
+            # Display each step with progress
+            for i, step in enumerate(quantum_steps):
+                # Update progress
+                progress = (i + 1) / steps
+                progress_bar.progress(progress)
+                
+                # Display current quantum computation step
+                st.markdown(f"""
+                <div style='
+                    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+                    padding: 20px;
+                    border-radius: 10px;
+                    color: white;
+                    text-align: center;
+                    margin: 10px 0;
+                    border: 2px solid #4CA1AF;
+                '>
+                    <div style='font-size: 24px; margin-bottom: 10px;'>⚛️</div>
+                    <div style='font-weight: bold; font-size: 16px;'>{step}</div>
+                    <div style='font-size: 12px; opacity: 0.8; margin-top: 5px;'>
+                        Quantum State: {i+1}/{steps}
+                    </div>
                 </div>
-            </div>
-            """, unsafe_allow_html=True)
+                """, unsafe_allow_html=True)
+                
+                # Wait before next step
+                time.sleep(step_duration)
             
-            # Wait before next step
-            time.sleep(step_duration)
-        
-        # Clear the animation
-        progress_bar.empty()
+            # Clear the animation
+            progress_bar.empty()
 
 def show_quantum_particles(self, duration=0.5):
     """Alternative: Quantum particle animation"""
